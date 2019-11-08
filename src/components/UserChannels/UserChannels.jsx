@@ -5,6 +5,7 @@ import Select from 'react-select'
 import { connect } from 'react-redux'
 import { getUserChannels } from '../../actions/userChanel-action'
 import { getEbayCategoryList, setNextPageToken } from '../../actions/ebayCategoryList-action'
+import './UserChannels.scss'
 
 
 class UserChannels extends Component {
@@ -44,7 +45,7 @@ class UserChannels extends Component {
     render() {
         const { userChannels } = this.props
         return (
-            <div>
+            <div className='user-channels'>
                 <div className="hello">Hi!</div>
                 { userChannels ? <Select options={userChannels} onChange={this.onChange}/> : null}
                 <EbayCategoryList/>

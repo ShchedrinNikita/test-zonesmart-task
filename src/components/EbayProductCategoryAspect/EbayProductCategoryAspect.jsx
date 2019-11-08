@@ -15,10 +15,10 @@ class EbayProductCategoryAspect extends Component {
             <div>
                 <div className="category-name">{ebayProductCategoryAspectName}</div>
                 { ebayProductCategoryAspect.map(el => 
-                    <div className='aspects'>
-                        <div className="name">{el.localizedAspectName}</div>
+                    <div className='aspects' key={el.localizedAspectName}>
+                        <div className="name">{el.localizedAspectName}:</div>
                         { el.aspectMode === 'SELECTION_ONLY' ?
-                            <select className='selectpicker'>{el.aspectValues.map(el => <option>{el}</option>)}</select> :
+                            <select className='selectpicker'>{el.aspectValues.map(el => <option key={el}>{el}</option>)}</select> :
                             <input type="text" value={this.state.value} onChange={this.onChange} name={el.localizedAspectName}/>
                         }
                 </div>)}

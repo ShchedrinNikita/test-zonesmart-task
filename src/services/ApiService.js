@@ -52,7 +52,6 @@ export default class ApiService {
             return axios.get(`http://utss.su/api/ebay/product/category/?level=&parent_id=&channel_id${channelId}=&is_leaf=True&category_id=`)
         }
         else {
-            console.log('1131')
             return axios.get(`http://utss.su/api/${nextPageToken}`)
         }
     }
@@ -62,13 +61,4 @@ export default class ApiService {
             url: `http://utss.su/api/ebay/product/category/${id}/get_aspects/`,
         })
     }
-
-    
-        // return fetch(`${this.apiBase}auth/jwt/create/`, {
-        //     method: 'POST',
-        //     headers: {
-        //       'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(obj)
-        //   });
 }

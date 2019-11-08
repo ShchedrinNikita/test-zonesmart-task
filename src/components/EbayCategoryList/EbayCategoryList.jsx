@@ -20,15 +20,18 @@ class EbayCategoryList extends Component {
         const result = await this.apiService.GetEbayProductCategoryAspects(id)
         getEbayProductCategoryAspect(result.data)
         setEbayProductCategoryAspectName(name)        
-        console.log(result.data)
     }
     
     render() {
-        const { ebayCategoryList} = this.props
+        const { ebayCategoryList, ebayProductCategoryAspectName } = this.props
         return (
-            <div>
+            <div className='category-list'>
                <ul className="list-group">
-                    { ebayCategoryList.map(el => <li className="list-group-item" onClick={() => this.onClick(el.id, el.name)}>{el.name}</li>)}
+                    { ebayCategoryList.map(el => 
+                    <li className={el.name === ebayProductCategoryAspectName ? "list-group-item active" : "list-group-item"}
+                    onClick={() => this.onClick(el.id, el.name)} key={el.id}>
+                        {el.name}
+                    </li>)}
                     { ebayCategoryList.length > 0 ? <li className="list-group-item load-more" onClick={this.loadMore}>Load More</li> : null}
                 </ul> 
                 <EbayProductCategoryAspect />
@@ -38,7 +41,8 @@ class EbayCategoryList extends Component {
 }
 const mapStateToProps = (state) => ({
     ebayCategoryList: state.ebayCategoryList.ebayCategoryList,
-    nextPageToken: state.ebayCategoryList.nextPageToken
+    nextPageToken: state.ebayCategoryList.nextPageToken,
+    ebayProductCategoryAspectName: state.ebayProductCategoryAspect.ebayProductCategoryAspectName
 }) 
 export default connect( mapStateToProps, {  getEbayCategoryList, setNextPageToken, getEbayProductCategoryAspect, setEbayProductCategoryAspectName } )(EbayCategoryList)
 
